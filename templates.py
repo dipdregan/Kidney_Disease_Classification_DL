@@ -25,7 +25,8 @@ list_of_files = [
     "research/testing.py",
     "setup.py",
     "model/.gitkeep",
-    "templates/index.html"
+    "templates/index.html",
+    "init_setup.sh",
 ]
 
 
