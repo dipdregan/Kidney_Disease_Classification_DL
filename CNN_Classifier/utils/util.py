@@ -19,6 +19,29 @@ def read_yaml(file_path: Path)-> ConfigBox:
         
     except Exception as e:
         raise CNN_Classifier(e, sys) from e
+    
+
+def write_yaml(path_to_save,validation_report):
+    try:
+        with open(path_to_save, 'w') as report_file:
+            yaml.dump(validation_report, report_file)
+
+    except Exception as e:
+        raise CNN_Classifier(e, sys)
+    
+def list_subfolders(root_folder):
+    try:
+        subfolder_paths = []
+        subfolders = os.listdir(os.path.join(root_folder, os.listdir(root_folder)[0]))
+        
+        for subfolder in subfolders:
+            subfolder_path = os.path.join(root_folder, os.listdir(root_folder)[0], subfolder)
+            subfolder_paths.append(subfolder_path)
+        
+        return subfolder_paths
+    except Exception as e:
+        raise e
+
 
 @ensure_annotations   
 def save_json(path_to_save: Path, data: dict):

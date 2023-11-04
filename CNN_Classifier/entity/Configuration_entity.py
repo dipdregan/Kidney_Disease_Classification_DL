@@ -21,3 +21,23 @@ class DataIngetionConfig:
         self.unzip_file_path: str = os.path.join(self.data_ingestion_dir, Constants.DATA_INGETION_UNZIP_DATA_STORE_DIR)
 
         self.data_api :str = Constants.Data_API
+
+
+class ImageDataValidationConfig:
+    def __init__(self,root_dir:RootConfig):
+        self.valid_image_filepath = os.path.join(root_dir.artifact_dir,Constants.VALID_IMAGE_FILE_PATH)
+        self.currepted_image_filepath = os.path.join(root_dir.artifact_dir,Constants.CURREPTED_IMAGE_FILE_PATH)
+
+        self.image_data_foramts = Constants.VALID_IMAGE_FORMATS
+        
+        self.image_class_label = Constants.VALID_IMAGE_LABELS
+
+        self.validation_report = Constants.VALIDATION_REPORT
+        
+        self.validation_report_path = os.path.join(self.valid_image_filepath,Constants.VALIDATION_REPORT_FILE_PATH ,Constants.VALIDATION_REPORT)
+        
+
+
+
+
+        
