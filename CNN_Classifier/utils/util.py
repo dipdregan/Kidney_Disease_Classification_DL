@@ -95,11 +95,14 @@ def load_binary_file(path:Path):
         raise CNN_Classifier(e, sys) from e 
     
 @ensure_annotations
-def get_size(path:Path):
+def get_size_image(path:Path):
     try:
         size_in_kb = round(os.path.getsize(path)/1024)
+        return size_in_kb
     except Exception as e:
         raise CNN_Classifier(e, sys)
+    
+
 
 @ensure_annotations
 def decodeImage(imgstring, filename):

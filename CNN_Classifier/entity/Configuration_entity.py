@@ -22,19 +22,29 @@ class DataIngetionConfig:
 
         self.data_api :str = Constants.Data_API
 
+        self.zip_file_name_path: str = os.path.join(self.kaggle_data_zip_file_path,Constants.Zip_File_Name) 
+
 
 class ImageDataValidationConfig:
     def __init__(self,root_dir:RootConfig):
-        self.valid_image_filepath = os.path.join(root_dir.artifact_dir,Constants.VALID_IMAGE_FILE_PATH)
-        self.currepted_image_filepath = os.path.join(root_dir.artifact_dir,Constants.CURREPTED_IMAGE_FILE_PATH)
 
         self.image_data_foramts = Constants.VALID_IMAGE_FORMATS
         
         self.image_class_label = Constants.VALID_IMAGE_LABELS
 
         self.validation_report = Constants.VALIDATION_REPORT
+
+        self.image_size = Constants.IMAGE_SIZE
+
+        self.image_channel = Constants.IMAGE_CHANNEL
+
+        self.validating_image_filepath = os.path.join(root_dir.artifact_dir,Constants.VALID_IMAGE_ROOT_DIR)
+
+        self.currepted_image_filepath = os.path.join(self.validating_image_filepath,Constants.CURREPTED_IMAGE_FILE_PATH)
+
+        self.valid_image_filepath = os.path.join(self.validating_image_filepath,Constants.VALID_IMAGE_FILE_PATH)        
         
-        self.validation_report_path = os.path.join(self.valid_image_filepath,Constants.VALIDATION_REPORT_FILE_PATH ,Constants.VALIDATION_REPORT)
+        self.validation_report_path = os.path.join(self.valid_image_filepath,Constants.VALIDATION_REPORT_FILE_PATH )
         
 
 class DataTransformImageConfig:
@@ -50,8 +60,7 @@ class DataTransformImageConfig:
                                                Constants.BALANCE_IMAGE_DATA_DIR)
         
         self.transform_image_data_path = os.path.join(self.main_data_transform_dir,
-                                                      Constants.TRANSFORM_IMAGE_DATA_DIR
-                                                      )
+                                                      Constants.TRANSFORM_IMAGE_DATA_DIR)
                
         self.transform_image_npy_data = os.path.join(self.transform_image_data_path,
                                                      Constants.TRANSFORMED_IMAGE_DATA)
@@ -59,27 +68,24 @@ class DataTransformImageConfig:
         self.transform_label_npy_data = os.path.join(self.transform_image_data_path,
                                                      Constants.TRANSFORMED_LABELS_DATA)
         
+        self.preprocess_pickle_path = os.path.join(self.main_data_transform_dir,
+                                                   Constants.PREPROCESS_DATA_IN_PIKEL_PATH,
+                                                   Constants.PREPROCESS_DATA_IN_PIKEL_FILE)
+        
         self.Splited_Data_dir = os.path.join(self.main_data_transform_dir,
-                                                      Constants.SPLIT_DATA_DIR
-                                                      )
+                                                      Constants.SPLIT_DATA_DIR)
 
         self.X_train_file_path = os.path.join(self.Splited_Data_dir,
-                                                      Constants.X_TRAIN_FILE
-                                                      )
+                                                      Constants.X_TRAIN_FILE)
         self.X_test_file_path = os.path.join(self.Splited_Data_dir,
-                                                      Constants.X_TEST_FILE
-                                                      )
+                                                      Constants.X_TEST_FILE)
         self.X_val_file_path = os.path.join(self.Splited_Data_dir,
-                                                      Constants.X_VAL_FILE
-                                                      )
+                                                      Constants.X_VAL_FILE)
         
         self.Y_train_file_path = os.path.join(self.Splited_Data_dir,
-                                                      Constants.Y_TRAIN_FILE
-                                                      )
+                                                      Constants.Y_TRAIN_FILE)
         self.Y_test_file_path = os.path.join(self.Splited_Data_dir,
-                                                      Constants.Y_TEST_FILE
-                                                      )
+                                                      Constants.Y_TEST_FILE)
         self.Y_val_file_path = os.path.join(self.Splited_Data_dir,
-                                                      Constants.Y_VAL_FILE
-                                                      )
+                                                      Constants.Y_VAL_FILE)
         

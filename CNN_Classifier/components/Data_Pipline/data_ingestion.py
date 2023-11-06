@@ -25,6 +25,7 @@ class DataIngestion:
             os.makedirs(output_dir, exist_ok=True)
 
             download_command = f"kaggle datasets download -d {dataset_api} -p {output_dir}"
+            # kaggle datasets download -d nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone
     
             try:
                 subprocess.run(download_command, shell=True, check=True)
@@ -36,8 +37,10 @@ class DataIngestion:
         
     def unziping_the_data(self):
         try:
-            zip_file_path = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_02_2023_15_38_37\Image_data_ingetion\Kaggel_data_Zip_formate\ct-kidney-dataset-normal-cyst-tumor-and-stone.zip"
-            # zip_file_path = self.data_ingestion_config.kaggle_data_zip_file_path
+            # zip_file_path = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_05_2023_22_52_10\Image_data_ingetion\Kaggel_data_Zip_formate\ct-kidney-dataset-normal-cyst-tumor-and-stone.zip"
+            
+            zip_file_path = self.data_ingestion_config.zip_file_name_path
+            # filename = os.path.basename(zip_file_path)
     
             unzip_dir = self.data_ingestion_config.unzip_file_path
             os.makedirs(unzip_dir, exist_ok= True)
@@ -56,7 +59,7 @@ class DataIngestion:
             
             logging.info(f"Data is Downloading from Kaggle...")
             logging.info(f"Storing the data in this folder :{self.data_ingestion_config.kaggle_data_zip_file_path}")
-            #self.importing_data_from_kaggle()
+            self.importing_data_from_kaggle()
             
             logging.info(f" Unzipping the data into this folder :{self.data_ingestion_config.unzip_file_path}")
             self.unziping_the_data()

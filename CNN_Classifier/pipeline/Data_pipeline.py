@@ -40,7 +40,7 @@ class TRAINING_PIPELINE:
     def run_pipeline(self):
         try:
             data_ingestion_artifact:DataIngestionArtifact = self.start_data_ingestion()
-            # data_ingestion_artifact = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_02_2023_15_54_35\Image_data_ingetion\Unzip_data\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone"
+            # data_ingestion_artifact = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_06_2023_02_29_52\Image_data_ingetion\Unzip_data\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone"
 
             data_validation_artifact:ImageDataValidationArtifact = self.start_data_validation(data_ingestion_artifact)
         except Exception as e:
