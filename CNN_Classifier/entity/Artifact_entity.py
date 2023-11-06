@@ -8,3 +8,10 @@ class DataIngestionArtifact:
 class ImageDataValidationArtifact:
     Image_data_validation_path:str
     validation_status: bool
+
+@dataclass
+class ImageDataTransformationArtifact:
+    Balance_Data_Path: str
+    Transform_Image_Lable_Path :str
+    Splited_data: str
+    

@@ -27,6 +27,5 @@ setuptools.setup(
                  },
     package_dir={"":"CNN_Classifier"},
     packages=setuptools.find_packages(where="CNN_Classifier"),
+    
 )
-
-

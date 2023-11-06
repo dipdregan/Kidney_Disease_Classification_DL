@@ -1,5 +1,4 @@
 from pathlib import Path
-from CNN_Classifier.exception import CNN_Classifier
 from CNN_Classifier.logging import logging
 import sys, os
 from box import ConfigBox
@@ -8,6 +7,7 @@ import base64
 import yaml
 import json
 from ensure import ensure_annotations
+from CNN_Classifier.exception import CNN_Classifier
 
 @ensure_annotations
 def read_yaml(file_path: Path)-> ConfigBox:
