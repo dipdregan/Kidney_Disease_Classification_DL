@@ -28,7 +28,7 @@ TRANSFORMED_IMAGE_DATA:str = "Data.ny"
 TRANSFORMED_LABELS_DATA:str = "Label.ny"
 
 ## Splited_Data related Constant
-SPLIT_DATA_DIR:str ="Slited_Data"
+SPLIT_DATA_DIR:str ="Splited_Data"
 X_TRAIN_FILE:str = "X_train.npy"
 Y_TRAIN_FILE :str= "y_train.npy"
 X_TEST_FILE :str = "X_test.npy"
