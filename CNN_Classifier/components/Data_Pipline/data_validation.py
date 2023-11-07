@@ -65,24 +65,6 @@ class IMAGE_Data_VALIDATION:
             logging.error(f"Error while validating image classes: {e}")
             return False
         
-    def validate_image_size(self,image_path):
-        try:
-            desired_size = self.data_validation_config.image_size
-            desired_channels = self.data_validation_config.image_channel
-
-            image = cv2.imread(image_path)
-            if image is not None:
-                height, width, channels = image.shape
-                if height == desired_size and width == desired_size and channels == desired_channels:
-                    return True
-                else:
-                    return False
-            else:
-                return False
-        except Exception as e:
-            logging.error(f"Error while validating image size: {e}")
-            return False
-
     def initiate_validation(self) -> ImageDataValidationArtifact:
         try:
             validation_status = True  # Assume validation is successful
@@ -96,34 +78,17 @@ class IMAGE_Data_VALIDATION:
                 for image_file in os.listdir(label_path):
                     image_path = os.path.join(label_path, image_file)
 
-                    # Validate image extension
-                    if not self.validate_image_extension(image_path):
+                    # Validate image extension and corrupted images
+                    if not self.validate_image_extension(image_path) or self.is_corrupt_image(image_path):
                         validation_status = False
-                        validation_report["invalid_images"].append({"path": image_path, "reason": "Invalid extension"})
+                        validation_report["invalid_images"].append({"path": image_path, "reason": "Invalid extension or corrupt image"})
                         label_corrupted_folder = os.path.join(self.data_validation_config.currepted_image_filepath, label)
                         os.makedirs(label_corrupted_folder, exist_ok=True)
                         shutil.move(image_path, os.path.join(label_corrupted_folder, os.path.basename(image_path)))
                         continue
 
-                    # Check for corrupt images
-                    if self.is_corrupt_image(image_path):
-                        validation_status = False
-                        validation_report["invalid_images"].append({"path": image_path, "reason": "Corrupt image"})
-                        # Move the corrupt image to the 'corrupted' folder under the label's name
-                        label_corrupted_folder = os.path.join(self.data_validation_config.currepted_image_filepath, label)
-                        os.makedirs(label_corrupted_folder, exist_ok=True)
-                        shutil.move(image_path, os.path.join(label_corrupted_folder, os.path.basename(image_path)))
-                        continue  # Skip to the next image if the image is corrupt
-
-                    # Check image size
-                    if not self.validate_image_size(image_path):
-                        validation_status = False
-                        validation_report["invalid_images"].append({"path": image_path, "reason": "Invalid size"})
-                        
-                        continue 
-
                     # Move the validated image to the 'validated' folder under the label's name
-                    label_valid_folder = os.path.join(self.data_validation_config.valid_image_filepath, label)
+                    label_valid_folder = os.path.join(self.data_validation_config.validating_image_filepath, label)
                     os.makedirs(label_valid_folder, exist_ok=True)
                     shutil.move(image_path, os.path.join(label_valid_folder, os.path.basename(image_path)))
 
@@ -144,10 +109,45 @@ class IMAGE_Data_VALIDATION:
             write_yaml(validation_report_path, validation_report)
 
             image_data_validation_artifact = ImageDataValidationArtifact(
-                Image_data_validation_path=self.data_validation_config.valid_image_filepath,
+                Image_data_validation_path=self.data_validation_config.validating_image_filepath,
                 validation_status=validation_status
             )
 
             return image_data_validation_artifact
         except Exception as e:
             raise CNN_Classifier(e, sys)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # def validate_image_size(self,image_path):
+    #     try:
+    #         desired_size = self.data_validation_config.image_size
+    #         desired_channels = self.data_validation_config.image_channel
+
+    #         image = cv2.imread(image_path)
+    #         if image is not None:
+    #             height, width, channels = image.shape
+    #             if height == desired_size and width == desired_size and channels == desired_channels:
+    #                 return True
+    #             else:
+    #                 return False
+    #         else:
+    #             return False
+    #     except Exception as e:
+    #         logging.error(f"Error while validating image size: {e}")
+    #         return False
