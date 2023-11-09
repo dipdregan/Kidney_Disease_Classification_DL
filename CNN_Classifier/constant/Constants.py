@@ -12,8 +12,7 @@ DATA_INGETION_UNZIP_DATA_STORE_DIR: str = "Unzip_data"
 
 
 # Data Validation Related Constants
-IMAGE_SIZE:int = 227
-IMAGE_CHANNEL:int = 3
+
 VALID_IMAGE_ROOT_DIR: str = "Image_Data_Validation"
 VALID_IMAGE_FILE_PATH: str = "Validated_image_data"
 CURREPTED_IMAGE_FILE_PATH: str = "Correpted_image_data"
@@ -23,14 +22,17 @@ VALID_IMAGE_FORMATS: List[str] = [".jpg", ".jpeg", ".png"]
 VALID_IMAGE_LABELS: List[str] = ["cyst", "normal", "stone", "cancer"]
 
 # Data Transformation Related Variable
-
+IMAGE_SIZE:int = 227
+IMAGE_CHANNEL:int = 'RGB' #e.g., 'RGB' for color or 'L' for grayscale
 TRANSFORM_IMAGE_DATA_ROOT_DIR = "Image_Data_transformation"
-BALANCE_IMAGE_DATA_DIR:str = "Balanced_data"#["cyst", "normal", "stone", "cancer"]
+BALANCE_IMAGE_DATA_DIR:str = "Balanced_image_data"#["cyst", "normal", "stone", "cancer"]
+RESIZED_IMAGE_DATA_DIR:str = "Resized__image_data"#["cyst", "normal", "stone", "cancer"]
 TRANSFORM_IMAGE_DATA_DIR:str = "Transformed_data"
-TRANSFORMED_IMAGE_DATA:str = "Data.ny"
-TRANSFORMED_LABELS_DATA:str = "Label.ny"
+TRANSFORMED_IMAGE_DATA:str = "Data.npy"
+TRANSFORMED_LABELS_DATA:str = "Label.npy"
 PREPROCESS_DATA_IN_PIKEL_PATH:str = "Preprocess_data_pkl"
-PREPROCESS_DATA_IN_PIKEL_FILE:str = "preprocess.pkl"
+PREPROCESS_DATA_IN_PIKEL_FILE:str = "Image_Data.pkl"
+PREPROCESS_LABEL_IN_PIKEL_FILE:str = "Label_Data.pkl"
 
 ## Splited_Data related Constant
 SPLIT_DATA_DIR:str ="Splited_Data"

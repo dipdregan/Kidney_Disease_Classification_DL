@@ -20,14 +20,16 @@ class IMAGE_Data_VALIDATION:
 
     def validate_image_extension(self, image_file_path):
         try:
-            logging.info(f"Validating the extensions...")
+            
             valid_extensions = self.data_validation_config.image_data_foramts
             file_extension = os.path.splitext(image_file_path)[1].lower()
             if file_extension in valid_extensions:
                 return True
             else:
                 os.remove(image_file_path)  # Delete the file if it has an invalid extension
+                logging.info(f"Extension Validaion Completed...>>>>>>>>>>>")
                 return False
+            # logging.info(f"Extension Validaion Completed...>>>>>>>>>>>")
         except FileNotFoundError:
             logging.error(f"File not found: {image_file_path}")
             return False
@@ -37,7 +39,6 @@ class IMAGE_Data_VALIDATION:
 
     def is_corrupt_image(self, image_file_path):
         try:
-            logging.info(f"Validating corrupted images...")
             img = cv2.imread(image_file_path)
             if img is None:
                 os.remove(image_file_path)  # Delete the corrupt image
@@ -52,12 +53,12 @@ class IMAGE_Data_VALIDATION:
 
     def validate_image_class(self):
         try:
-            logging.info("Validating image classes...")
             classes_path = list_subfolders(self.data_ingetion_artifact.unzip_data_file_path)
             class_name = [os.path.basename(i) for i in classes_path]
-
             expected_classes = self.data_validation_config.image_class_label
+
             return expected_classes == class_name
+
         except FileNotFoundError:
             logging.error("One or more directories not found.")
             return False
@@ -67,6 +68,10 @@ class IMAGE_Data_VALIDATION:
         
     def initiate_validation(self) -> ImageDataValidationArtifact:
         try:
+            logging.info(f"{10*'===='}")
+            logging.info(f"{10*'=='} 'Start Data Validation'{10*'=='}")
+            logging.info(f"{10*'===='}")
+
             validation_status = True  # Assume validation is successful
             validation_report = {"valid_images": [], "invalid_images": []}
             root_folder = self.data_ingetion_artifact.unzip_data_file_path
@@ -74,7 +79,8 @@ class IMAGE_Data_VALIDATION:
 
             for label in os.listdir(subfolders):
                 label_path = os.path.join(subfolders, label)
-
+                logging.info(f"Started  Validating the extensions...>>>>>>>>>>>>>>>")
+                logging.info(f"Validating corrupted images...")
                 for image_file in os.listdir(label_path):
                     image_path = os.path.join(label_path, image_file)
 
@@ -94,12 +100,14 @@ class IMAGE_Data_VALIDATION:
 
                     # Add valid images to the report
                     validation_report["valid_images"].append({"path": image_path, "reason": "valid"})
-
+                logging.info(f"Validating the extensions Completed...>>>>>>>>>>>>>>>")
+                logging.info(f"Validating corrupted images Completed...>>>>>>>>>>>>>>>>")
             # Checking for valid image classes
+            logging.info(f"validating Images Classes...........>>>>>>>>>")
             if not self.validate_image_class():
                 validation_status = False
                 validation_report["invalid_images"].append({"reason": "Invalid image class"})
-
+            logging.info(f"Genrating the image Reports")
             # Save the validation report to a YAML file
             validation_report_path = os.path.join(
                 self.data_validation_config.validation_report_path,
@@ -112,7 +120,9 @@ class IMAGE_Data_VALIDATION:
                 Image_data_validation_path=self.data_validation_config.validating_image_filepath,
                 validation_status=validation_status
             )
-
+            logging.info(f"{10*'===='}")
+            logging.info(f"{10*'=='}'Data Validation_Completed'{10*'=='}")
+            logging.info(f"{10*'===='}")
             return image_data_validation_artifact
         except Exception as e:
             raise CNN_Classifier(e, sys)

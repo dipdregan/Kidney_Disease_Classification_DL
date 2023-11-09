@@ -37,7 +37,7 @@ class DataIngestion:
         
     def unziping_the_data(self):
         try:
-            # zip_file_path = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_05_2023_22_52_10\Image_data_ingetion\Kaggel_data_Zip_formate\ct-kidney-dataset-normal-cyst-tumor-and-stone.zip"
+            # zip_file_path = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_08_2023_13_11_57\Image_data_ingetion\Kaggel_data_Zip_formate\ct-kidney-dataset-normal-cyst-tumor-and-stone.zip"
             
             zip_file_path = self.data_ingestion_config.zip_file_name_path
             # filename = os.path.basename(zip_file_path)
