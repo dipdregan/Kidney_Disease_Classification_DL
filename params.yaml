@@ -1,0 +1,26 @@
+TEST_SIZE: 0.3
+RANDOM_STATE: 42
+VAL_SIZE: 0.5
+LEARNING_RATE : 0.01
+BATCH_SIZE : 32
+IMAGE_SIZE : [224,224,1]
+EPOCHS : 100
+CLASSES : 4
+WEIGHT : imagenet
+MONITORING: val_loss
+PATIENCE: 3
+RESTORE_BEST_WEIGHT: True
+MONITOR: val_accuracy
+SAVE_BEST_ONLY: True
+MODE: max
+MODEL_NAME: CNN_bModel.h5
+
+
+# monitor='val_loss',        # it will Monitor validation loss
+#             patience=3,               # Number of epochs with no improvement before stopping
+#             restore_best_weights=True
+#               'best_model.h5',  # File to save the best model
+#             monitor='val_accuracy',  # Monitor validation accuracy
+#             save_best_only=True,     # Save only the best model
+#             mode='max',
+#             epochs=100,
