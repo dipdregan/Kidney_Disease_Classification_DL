@@ -71,6 +71,6 @@ class DataTransformImageConfig:
         self.transform_label_npy_data = os.path.join(self.transform_image_data_path, 
                                                      Constants.TRANSFORMED_LABELS_DATA)
         
-        self.preprocess_pickle_path = os.path.join(self.main_data_transform_dir, 
-                                                   Constants.PREPROCESS_DATA_IN_PIKEL_PATH)
+        # self.preprocess_pickle_path = os.path.join(self.main_data_transform_dir, 
+        #                                            Constants.PREPROCESS_DATA_IN_PIKEL_PATH)
     

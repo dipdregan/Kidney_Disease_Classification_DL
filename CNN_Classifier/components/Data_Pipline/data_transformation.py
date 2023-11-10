@@ -25,7 +25,6 @@ class DataTransformation:
 
         self.balance_image_data_path = data_transformation_config.balance_image_data_path
         self.resized_image_data_path = data_transformation_config.resized_image_data_path
-        self.preprocess_image_pikle_path = data_transformation_config.preprocess_pickle_path,
         self.trasform_image_and_label_path = data_transformation_config.transform_image_data_path
         
 
@@ -139,11 +138,13 @@ class DataTransformation:
             image_data_transformation = ImageDataTransformationArtifact(
                 Balance_Data_Path=self.balance_image_data_path,
                 Transform_Image_Lable_Path=self.trasform_image_and_label_path,
+                Resized_Image_Data_Path=self.resized_image_data_path
             )
             return image_data_transformation
 
         except Exception as e:
             raise CNN_Classifier(e, sys)
+        
 
 
 

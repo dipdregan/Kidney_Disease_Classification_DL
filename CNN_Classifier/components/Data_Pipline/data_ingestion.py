@@ -3,7 +3,7 @@ from CNN_Classifier.entity.Configuration_entity import DataIngetionConfig
 
 import subprocess
 import zipfile
-
+from pathlib import Path
 from CNN_Classifier.exception import CNN_Classifier
 from CNN_Classifier.logging import logging
 import os, sys
@@ -17,7 +17,7 @@ class DataIngestion:
         except Exception as e:
             raise CNN_Classifier(e,sys)
     
-    def importing_data_from_kaggle(self):
+    def importing_data_from_kaggle(self)->Path:
         try:
             dataset_api = self.data_ingestion_config.data_api
 
@@ -25,23 +25,20 @@ class DataIngestion:
             os.makedirs(output_dir, exist_ok=True)
 
             download_command = f"kaggle datasets download -d {dataset_api} -p {output_dir}"
-            # kaggle datasets download -d nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone
-    
+            # kaggle datasets download -d nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone     
             try:
                 subprocess.run(download_command, shell=True, check=True)
                 print("Dataset downloaded successfully!")
             except subprocess.CalledProcessError as e:
                 print(f"Error: {e}")
+        
         except Exception as e:
             raise CNN_Classifier(e, sys)
         
     def unziping_the_data(self):
         try:
-            # zip_file_path = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_08_2023_13_11_57\Image_data_ingetion\Kaggel_data_Zip_formate\ct-kidney-dataset-normal-cyst-tumor-and-stone.zip"
-            
+
             zip_file_path = self.data_ingestion_config.zip_file_name_path
-            # filename = os.path.basename(zip_file_path)
-    
             unzip_dir = self.data_ingestion_config.unzip_file_path
             os.makedirs(unzip_dir, exist_ok= True)
 

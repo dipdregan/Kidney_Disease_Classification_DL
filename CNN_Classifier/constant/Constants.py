@@ -23,7 +23,7 @@ VALID_IMAGE_LABELS: List[str] = ["cyst", "normal", "stone", "cancer"]
 
 # Data Transformation Related Variable
 IMAGE_SIZE:int = 227
-IMAGE_CHANNEL:int = 'RGB' #e.g., 'RGB' for color or 'L' for grayscale
+IMAGE_CHANNEL:int = 1 
 TRANSFORM_IMAGE_DATA_ROOT_DIR = "Image_Data_transformation"
 BALANCE_IMAGE_DATA_DIR:str = "Balanced_image_data"#["cyst", "normal", "stone", "cancer"]
 RESIZED_IMAGE_DATA_DIR:str = "Resized__image_data"#["cyst", "normal", "stone", "cancer"]
@@ -34,14 +34,14 @@ PREPROCESS_DATA_IN_PIKEL_PATH:str = "Preprocess_data_pkl"
 PREPROCESS_DATA_IN_PIKEL_FILE:str = "Image_Data.pkl"
 PREPROCESS_LABEL_IN_PIKEL_FILE:str = "Label_Data.pkl"
 
-## Splited_Data related Constant
-SPLIT_DATA_DIR:str ="Splited_Data"
-X_TRAIN_FILE:str = "X_train.npy"
-Y_TRAIN_FILE :str= "y_train.npy"
-X_TEST_FILE :str = "X_test.npy"
-Y_TEST_FILE :str = "y_test.npy"
-X_VAL_FILE :str = "X_val.npy"
-Y_VAL_FILE :str ="y_val.npy" 
+# ## Splited_Data related Constant
+# SPLIT_DATA_DIR:str ="Splited_Data"
+# X_TRAIN_FILE:str = "X_train.npy"
+# Y_TRAIN_FILE :str= "y_train.npy"
+# X_TEST_FILE :str = "X_test.npy"
+# Y_TEST_FILE :str = "y_test.npy"
+# X_VAL_FILE :str = "X_val.npy"
+# Y_VAL_FILE :str ="y_val.npy" 
 
 
 

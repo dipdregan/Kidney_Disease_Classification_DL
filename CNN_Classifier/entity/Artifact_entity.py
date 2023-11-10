@@ -14,5 +14,5 @@ class ImageDataValidationArtifact:
 class ImageDataTransformationArtifact:
     Balance_Data_Path: Path
     Transform_Image_Lable_Path :Path
-    Preprocess_Pickle_Path: Path
+    Resized_Image_Data_Path :Path
     
