@@ -59,9 +59,6 @@ class DataTransformImageConfig:
         self.balance_image_data_path = os.path.join(self.main_data_transform_dir, 
                                                     Constants.BALANCE_IMAGE_DATA_DIR)
         
-        self.resized_image_data_path = os.path.join(self.main_data_transform_dir, 
-                                                    Constants.RESIZED_IMAGE_DATA_DIR)
-        
         self.transform_image_data_path = os.path.join(self.main_data_transform_dir, 
                                                       Constants.TRANSFORM_IMAGE_DATA_DIR)
         
@@ -74,3 +71,10 @@ class DataTransformImageConfig:
         # self.preprocess_pickle_path = os.path.join(self.main_data_transform_dir, 
         #                                            Constants.PREPROCESS_DATA_IN_PIKEL_PATH)
     
+class PreparebaseModelConfig:
+    def __init__(self, root_dir:RootConfig):
+        self.base_model = os.path.join(root_dir.artifact_dir,Constants.PREPARE_BASE_MODEL_DIR)
+
+        self.model_path = os.path.join(self.base_model, Constants.PREPARE_BASE_MODEL_NAME)
+
+        self.updated_model_path = os.path.join(self.base_model, Constants.UPDATED_BASE_MODEL_NAME)

@@ -57,7 +57,7 @@ class TRAINING_PIPELINE:
             # data_ingestion_artifact = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_08_2023_13_11_57\Image_data_ingetion\Unzip_data"
 
             data_validation_artifact:ImageDataValidationArtifact = self.start_data_validation(data_ingestion_artifact)
-            # data_validation_artifact = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_08_2023_14_55_31\Image_Data_Validation"
+            # data_validation_artifact = r"F:\End_To_End_project\Kidney_Disease_Classification_DL\artifact\11_09_2023_20_39_54\Image_Data_Validation"
 
             data_transformation_artifact:ImageDataTransformationArtifact = self.start_data_transformation(data_validation_artifact)
         

@@ -73,7 +73,7 @@ class IMAGE_Data_VALIDATION:
             logging.info(f"{10*'===='}")
 
             validation_status = True  # Assume validation is successful
-            validation_report = {"valid_images": [], "invalid_images": []}
+            validation_report = {"Valid_images": [], "Currepted_images": []}
             root_folder = self.data_ingetion_artifact.unzip_data_file_path
             subfolders = list_subfolders(root_folder)[0]
 
